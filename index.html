@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI测试 30 天冲刺路线图</title>
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --paper: rgba(255, 252, 246, 0.86);
+      --ink: #1d1a17;
+      --muted: #6f6458;
+      --accent: #c95f37;
+      --accent-deep: #8e3413;
+      --sage: #6a7f63;
+      --gold: #b78a2f;
+      --line: rgba(29, 26, 23, 0.12);
+      --shadow: 0 22px 60px rgba(65, 42, 26, 0.12);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(201, 95, 55, 0.12), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(106, 127, 99, 0.14), transparent 26%),
+        linear-gradient(180deg, #f9f3ea 0%, #efe4d2 100%);
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(29, 26, 23, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29, 26, 23, 0.02) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.05));
+    }
+
+    .page {
+      width: min(1240px, calc(100vw - 32px));
+      margin: 24px auto 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      padding: 42px;
+      background:
+        linear-gradient(135deg, rgba(255, 249, 239, 0.9), rgba(247, 235, 215, 0.92)),
+        linear-gradient(120deg, rgba(201, 95, 55, 0.08), transparent 48%);
+      border: 1px solid rgba(29, 26, 23, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "30D"
+        "\A"
+        "SPRINT";
+      white-space: pre;
+      position: absolute;
+      right: 24px;
+      top: 18px;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      font-size: clamp(42px, 7vw, 104px);
+      line-height: 0.88;
+      color: rgba(29, 26, 23, 0.08);
+      text-align: right;
+      letter-spacing: 0.08em;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(29, 26, 23, 0.06);
+      color: var(--accent-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Iowan Old Style", "Baskerville", "Palatino Linotype", serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(2.5rem, 5vw, 4.9rem);
+      line-height: 0.98;
+      max-width: 780px;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-top: 18px;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .hero-grid,
+    .summary-grid,
+    .resource-grid,
+    .final-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 22px;
+      border-radius: 26px;
+      background: var(--paper);
+      border: 1px solid rgba(29, 26, 23, 0.09);
+      backdrop-filter: blur(14px);
+    }
+
+    .mini-title {
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--accent-deep);
+      font-weight: 800;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(201, 95, 55, 0.08);
+      border: 1px solid rgba(201, 95, 55, 0.12);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .numbers {
+      display: grid;
+      gap: 14px;
+    }
+
+    .number-card {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(29, 26, 23, 0.07);
+    }
+
+    .number-card strong {
+      display: block;
+      font-size: 1.5rem;
+      font-family: "Iowan Old Style", serif;
+    }
+
+    .number-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      max-width: 720px;
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .summary-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .summary-card {
+      min-height: 210px;
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid rgba(29, 26, 23, 0.08);
+      background: linear-gradient(180deg, rgba(255, 252, 247, 0.92), rgba(248, 238, 222, 0.88));
+      box-shadow: var(--shadow);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .summary-card:hover,
+    .day-card:hover,
+    .week-card:hover,
+    .resource-card:hover,
+    .final-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201, 95, 55, 0.28);
+    }
+
+    .summary-card h3,
+    .week-card h3,
+    .day-card h4,
+    .resource-card h3,
+    .final-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .summary-card p,
+    .week-card p,
+    .resource-card p,
+    .final-card p,
+    .day-meta,
+    .hint,
+    ul {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .summary-card .tag {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(106, 127, 99, 0.12);
+      color: var(--sage);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+
+    .week-card {
+      position: relative;
+      padding: 26px;
+      border-radius: 30px;
+      background: rgba(255, 252, 246, 0.9);
+      border: 1px solid rgba(29, 26, 23, 0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .week-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: linear-gradient(180deg, var(--accent), var(--gold));
+    }
+
+    .week-top {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 22px;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+
+    .week-badge {
+      padding: 16px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(201, 95, 55, 0.14), rgba(183, 138, 47, 0.12));
+      border: 1px solid rgba(201, 95, 55, 0.16);
+    }
+
+    .week-badge strong {
+      display: block;
+      font-size: 1.6rem;
+    }
+
+    .week-badge span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .week-goal {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .goal-box {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(29, 26, 23, 0.08);
+    }
+
+    .goal-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 0.98rem;
+    }
+
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .day-card {
+      position: relative;
+      min-height: 250px;
+      padding: 18px 16px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(29, 26, 23, 0.08);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .day-card.done {
+      border-color: rgba(106, 127, 99, 0.38);
+      box-shadow: 0 18px 38px rgba(106, 127, 99, 0.15);
+      background: linear-gradient(180deg, rgba(239, 249, 238, 0.95), rgba(248, 255, 246, 0.92));
+    }
+
+    .day-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .day-index {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(201, 95, 55, 0.16), rgba(183, 138, 47, 0.16));
+      font-family: "Iowan Old Style", serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .toggle {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid rgba(29, 26, 23, 0.22);
+      border-radius: 7px;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      transition: all 180ms ease;
+    }
+
+    .toggle:checked {
+      background: var(--sage);
+      border-color: var(--sage);
+    }
+
+    .toggle:checked::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 1px;
+      width: 6px;
+      height: 12px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .day-card h4 {
+      font-size: 1.02rem;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .day-meta {
+      font-size: 0.92rem;
+      margin-bottom: 12px;
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+    }
+
+    .task-list {
+      padding-left: 18px;
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: 0.93rem;
+    }
+
+    .task-list li + li,
+    .micro-list li + li {
+      margin-top: 6px;
+    }
+
+    .micro-list {
+      padding-left: 18px;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .day-foot {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(29, 26, 23, 0.16);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .resource-grid,
+    .final-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .resource-card,
+    .final-card {
+      padding: 24px;
+      border-radius: 26px;
+      background: rgba(255, 252, 246, 0.92);
+      border: 1px solid rgba(29, 26, 23, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .resource-card ul,
+    .final-card ul {
+      padding-left: 18px;
+      margin-top: 12px;
+    }
+
+    .resource-card a {
+      color: var(--accent-deep);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .resource-card a:hover {
+      text-decoration: underline;
+    }
+
+    .control-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: rgba(29, 26, 23, 0.05);
+      border: 1px solid rgba(29, 26, 23, 0.08);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .secondary {
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--ink);
+      border: 1px solid rgba(29, 26, 23, 0.1);
+    }
+
+    .meter {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 240px;
+    }
+
+    .meter-bar {
+      position: relative;
+      flex: 1;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(29, 26, 23, 0.08);
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--sage));
+      transition: width 220ms ease;
+    }
+
+    .meter span {
+      font-weight: 800;
+      color: var(--accent-deep);
+      white-space: nowrap;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.54);
+      border: 1px dashed rgba(29, 26, 23, 0.15);
+      color: var(--muted);
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .summary-grid,
+      .resource-grid,
+      .final-grid,
+      .week-goal,
+      .days-grid,
+      .week-top {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 30px;
+      }
+
+      .hero::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100vw - 18px, 1240px);
+        margin-top: 10px;
+      }
+
+      .hero,
+      .week-card,
+      .summary-card,
+      .resource-card,
+      .final-card {
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-head,
+      .control-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">AI Testing Sprint Map</div>
+      <h1>AI测试 30 天冲刺路线图</h1>
+      <p class="lead">这是一份按“冲刺版 + 两者兼顾”设计的学习作战图。目标不是看完很多资料，而是在 30 天后同时拿到三样东西：一个能演示的 AI 测试 PoC、一套能用于面试的表达框架，以及一份能继续迭代的学习底盘。</p>
+
+      <div class="hero-grid">
+        <div class="panel">
+          <div class="mini-title">训练规则</div>
+          <div class="pill-row">
+            <div class="pill">工作日每天 2-3 小时</div>
+            <div class="pill">周末 1 天以上</div>
+            <div class="pill">主线项目：AI 辅助接口测试设计与缺陷分析</div>
+            <div class="pill">月底目标：PoC + 面试 + 简历补强</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="mini-title">最终交付</div>
+          <div class="numbers">
+            <div class="number-card">
+              <div>
+                <strong>1 个</strong>
+                <span>可演示 AI 测试 PoC</span>
+              </div>
+              <span>项目</span>
+            </div>
+            <div class="number-card">
+              <div>
+                <strong>15 题</strong>
+                <span>AI 测试高频问答</span>
+              </div>
+              <span>面试</span>
+            </div>
+            <div class="number-card">
+              <div>
+                <strong>4 周</strong>
+                <span>从基础到输出的闭环</span>
+              </div>
+              <span>节奏</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>这 30 天你会拿到什么</h2>
+          <p>每一块都是为了月底可证明、可展示、可被面试官感知，而不是泛泛学习。</p>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <article class="summary-card">
+          <h3>AI 应用基础认知</h3>
+          <p>理解 Prompt、RAG、Agent、评测、观测的基本链路，知道一套 AI 应用是怎么被搭起来的。</p>
+          <span class="tag">第 1 周打底</span>
+        </article>
+        <article class="summary-card">
+          <h3>AI 测试方法意识</h3>
+          <p>建立“怎么测 AI”的视角，能讲清输出不稳定、幻觉、回归、质量标准和风险控制。</p>
+          <span class="tag">第 2 周成型</span>
+        </article>
+        <article class="summary-card">
+          <h3>个人 PoC 项目</h3>
+          <p>完成一个与你未来求职方向高度相关的 AI 测试 PoC，优先体现接口测试点生成与缺陷辅助分析。</p>
+          <span class="tag">第 3 周开始</span>
+        </article>
+        <article class="summary-card">
+          <h3>面试与简历表达</h3>
+          <p>把“我学过”升级成“我做过、我能讲清楚、我知道怎么落地”，让路线图最终回到求职结果。</p>
+          <span class="tag">第 4 周收束</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>每日作战面板</h2>
+          <p>建议你每天只盯三件事：今天学什么、今天产出什么、今天如何把学习转成面试表达。勾选状态会保存在本地浏览器。</p>
+        </div>
+      </div>
+
+      <div class="control-bar">
+        <div class="meter">
+          <div class="meter-bar"><div class="meter-fill" id="meterFill"></div></div>
+          <span id="meterText">0 / 30</span>
+        </div>
+        <div class="actions">
+          <button class="primary" id="markWeekends">先标记周末冲刺日</button>
+          <button class="secondary" id="resetProgress">清空进度</button>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <article class="week-card">
+          <div class="week-top">
+            <div class="week-badge">
+              <strong>第 1 周</strong>
+              <span>Day 1-7</span>
+            </div>
+            <div>
+              <h3>先把 AI 应用全貌搭起来</h3>
+              <p>这一周不要着急写 PoC。核心是先建立正确地图：什么是 Prompt，什么是 RAG，什么是 Agent，什么是工作流，什么是评测。目标不是会背定义，而是能说出这些东西在产品里分别负责什么。</p>
+              <div class="week-goal">
+                <div class="goal-box">
+                  <strong>本周胜利条件</strong>
+                  <p>能用自己的话讲清 AI 应用基本结构，并写出 1 页学习笔记。</p>
+                </div>
+                <div class="goal-box">
+                  <strong>推荐项目</strong>
+                  <p>Dify、FastGPT、Langchain-Chatchat</p>
+                </div>
+                <div class="goal-box">
+                  <strong>面试加分点</strong>
+                  <p>从“我了解大模型”升级为“我知道一套 AI 应用如何落地”。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="days-grid">
+            <article class="day-card" data-day="1">
+              <div class="day-head">
+                <div class="day-index">1</div>
+                <input class="toggle" type="checkbox" aria-label="完成第1天">
+              </div>
+              <h4>搭建基础地图</h4>
+              <p class="day-meta">主题：Prompt / RAG / Agent / Workflow 总览</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>看 1 个 AI 应用平台项目主页</li>
+                <li>记录 4 个核心概念的定义和差异</li>
+                <li>写一张“AI 应用结构图”草稿</li>
+              </ul>
+              <div class="day-foot">产出：1 页概念笔记。面试联动：能回答“AI 应用包含哪些核心部分”。</div>
+            </article>
+            <article class="day-card" data-day="2">
+              <div class="day-head">
+                <div class="day-index">2</div>
+                <input class="toggle" type="checkbox" aria-label="完成第2天">
+              </div>
+              <h4>读 Dify 或 FastGPT</h4>
+              <p class="day-meta">主题：平台视角看 AI 应用编排</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>只看 README 和功能结构，不追源码细节</li>
+                <li>理解知识库、工作流、模型接入、日志等模块</li>
+                <li>写下“如果我是测试，会测哪几类风险”</li>
+              </ul>
+              <div class="day-foot">产出：模块拆解笔记。面试联动：能讲“我会从哪些维度理解一个 AI 平台”。</div>
+            </article>
+            <article class="day-card" data-day="3">
+              <div class="day-head">
+                <div class="day-index">3</div>
+                <input class="toggle" type="checkbox" aria-label="完成第3天">
+              </div>
+              <h4>聚焦 RAG 这条链路</h4>
+              <p class="day-meta">主题：文档导入、切片、向量检索、回答生成</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>看 Langchain-Chatchat 或 MaxKB</li>
+                <li>梳理 RAG 最小工作流</li>
+                <li>记录 3 个最常见质量问题</li>
+              </ul>
+              <div class="day-foot">产出：RAG 流程图。面试联动：能回答“RAG 为什么不等于普通对话”。</div>
+            </article>
+            <article class="day-card" data-day="4">
+              <div class="day-head">
+                <div class="day-index">4</div>
+                <input class="toggle" type="checkbox" aria-label="完成第4天">
+              </div>
+              <h4>理解 Prompt 工程</h4>
+              <p class="day-meta">主题：输入约束、输出结构、质量稳定性</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>写 2 个测试场景 Prompt 模板</li>
+                <li>对比“宽泛提示”和“结构化提示”</li>
+                <li>总结好的 Prompt 应该包含哪些约束</li>
+              </ul>
+              <div class="day-foot">产出：2 份 Prompt 草稿。面试联动：能讲“Prompt 工程在测试里的作用”。</div>
+            </article>
+            <article class="day-card" data-day="5">
+              <div class="day-head">
+                <div class="day-index">5</div>
+                <input class="toggle" type="checkbox" aria-label="完成第5天">
+              </div>
+              <h4>从测试角度看 Agent</h4>
+              <p class="day-meta">主题：多步骤任务、工具调用、状态流转</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>看 1 个工作流或 Agent 项目演示</li>
+                <li>列出 Agent 失败的 5 种常见原因</li>
+                <li>写“Agent 与传统自动化”的区别</li>
+              </ul>
+              <div class="day-foot">产出：对比表。面试联动：能回答“AI 测试和传统自动化测试的区别”。</div>
+            </article>
+            <article class="day-card" data-day="6">
+              <div class="day-head">
+                <div class="day-index">6</div>
+                <input class="toggle" type="checkbox" aria-label="完成第6天">
+              </div>
+              <h4>周末冲刺：串起全貌</h4>
+              <p class="day-meta">主题：输出一张完整 AI 应用脑图</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>回顾本周所有笔记</li>
+                <li>整理核心概念与关系图</li>
+                <li>录一段 5 分钟口述或写 1 页总结</li>
+              </ul>
+              <div class="day-foot">产出：脑图或总结文档。面试联动：训练“连贯表达”而不是碎片回答。</div>
+            </article>
+            <article class="day-card" data-day="7">
+              <div class="day-head">
+                <div class="day-index">7</div>
+                <input class="toggle" type="checkbox" aria-label="完成第7天">
+              </div>
+              <h4>周复盘与口头演练</h4>
+              <p class="day-meta">主题：把知识变成自己的语言</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>复盘“这周我真正搞懂了什么”</li>
+                <li>练习回答 3 个基础面试题</li>
+                <li>补空白点，进入第 2 周</li>
+              </ul>
+              <div class="day-foot">产出：1 次自我录音。面试联动：降低真正开口时的生涩感。</div>
+            </article>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-top">
+            <div class="week-badge">
+              <strong>第 2 周</strong>
+              <span>Day 8-14</span>
+            </div>
+            <div>
+              <h3>补上“怎么测 AI”这条最关键的线</h3>
+              <p>很多人学 AI 应用，只会讲“怎么接模型”，但你要走的是 AI 提效测试方向，所以第二周必须把评测、回归、稳定性、风险控制这一层补起来。只要这一周学透，你在面试中的辨识度会直接拉开。</p>
+              <div class="week-goal">
+                <div class="goal-box">
+                  <strong>本周胜利条件</strong>
+                  <p>形成一套自己的 AI 测试思路，至少能回答 5 类质量问题。</p>
+                </div>
+                <div class="goal-box">
+                  <strong>推荐项目 / 工具</strong>
+                  <p>Langfuse、Ragas、DeepEval</p>
+                </div>
+                <div class="goal-box">
+                  <strong>面试加分点</strong>
+                  <p>不只会做 AI 应用，还知道怎么评估它是否真的可用。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="days-grid">
+            <article class="day-card" data-day="8">
+              <div class="day-head"><div class="day-index">8</div><input class="toggle" type="checkbox" aria-label="完成第8天"></div>
+              <h4>明确 AI 测试关注点</h4>
+              <p class="day-meta">主题：准确性、一致性、稳定性、成本、时延</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>写出 AI 应用最常见的 8 个质量问题</li>
+                <li>把它们分成产品风险、模型风险、工程风险</li>
+                <li>尝试举测试场景例子</li>
+              </ul>
+              <div class="day-foot">产出：风险分类表。面试联动：回答“AI 应用怎么测”。</div>
+            </article>
+            <article class="day-card" data-day="9">
+              <div class="day-head"><div class="day-index">9</div><input class="toggle" type="checkbox" aria-label="完成第9天"></div>
+              <h4>理解评测集与标准</h4>
+              <p class="day-meta">主题：黄金数据、回归集、打分维度</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>学习什么叫评测集</li>
+                <li>为未来 PoC 设计 10 条样例输入</li>
+                <li>定义 3 个评判标准</li>
+              </ul>
+              <div class="day-foot">产出：PoC 初版评测集。面试联动：能讲“我如何衡量 AI 效果”。</div>
+            </article>
+            <article class="day-card" data-day="10">
+              <div class="day-head"><div class="day-index">10</div><input class="toggle" type="checkbox" aria-label="完成第10天"></div>
+              <h4>了解观测与追踪</h4>
+              <p class="day-meta">主题：输入、输出、成本、调用链可观测性</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>看 Langfuse 的功能概念</li>
+                <li>理解为什么 AI 应用需要 trace</li>
+                <li>写下对测试最有用的 5 个观测字段</li>
+              </ul>
+              <div class="day-foot">产出：观测字段清单。面试联动：讲清为什么 AI 应用不能只看接口状态码。</div>
+            </article>
+            <article class="day-card" data-day="11">
+              <div class="day-head"><div class="day-index">11</div><input class="toggle" type="checkbox" aria-label="完成第11天"></div>
+              <h4>补充 RAG 质量视角</h4>
+              <p class="day-meta">主题：召回偏差、上下文污染、答案幻觉</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>列出 5 种 RAG 失败模式</li>
+                <li>思考每一种失败如何被测试发现</li>
+                <li>写成可用于面试的回答要点</li>
+              </ul>
+              <div class="day-foot">产出：RAG 失败模式清单。面试联动：回答“RAG 最大风险是什么”。</div>
+            </article>
+            <article class="day-card" data-day="12">
+              <div class="day-head"><div class="day-index">12</div><input class="toggle" type="checkbox" aria-label="完成第12天"></div>
+              <h4>把 AI 风险转成测试动作</h4>
+              <p class="day-meta">主题：规则校验、人审、回归、边界控制</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>设计“AI 生成 + 规则校验 + 人工复核”流程</li>
+                <li>写 1 个结构化输出模板</li>
+                <li>决定未来 PoC 如何兜底</li>
+              </ul>
+              <div class="day-foot">产出：PoC 风险控制方案。面试联动：回答“AI 输出不稳定怎么控风险”。</div>
+            </article>
+            <article class="day-card" data-day="13">
+              <div class="day-head"><div class="day-index">13</div><input class="toggle" type="checkbox" aria-label="完成第13天"></div>
+              <h4>周末冲刺：做 PoC 方案设计</h4>
+              <p class="day-meta">主题：定场景、定输入、定输出、定验收</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>确定 PoC 名称和场景范围</li>
+                <li>明确输入源和输出格式</li>
+                <li>写 MVP 功能清单</li>
+              </ul>
+              <div class="day-foot">产出：PoC 方案说明。面试联动：把“学习”开始转为“项目”。</div>
+            </article>
+            <article class="day-card" data-day="14">
+              <div class="day-head"><div class="day-index">14</div><input class="toggle" type="checkbox" aria-label="完成第14天"></div>
+              <h4>周复盘：能不能讲给别人听</h4>
+              <p class="day-meta">主题：形成自己的 AI 测试话术</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>练 5 道 AI 测试高频题</li>
+                <li>修正讲不顺的地方</li>
+                <li>进入 PoC 开发周</li>
+              </ul>
+              <div class="day-foot">产出：5 段高频回答。面试联动：开始形成稳定表达模板。</div>
+            </article>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-top">
+            <div class="week-badge">
+              <strong>第 3 周</strong>
+              <span>Day 15-21</span>
+            </div>
+            <div>
+              <h3>把学习压缩成一个真能演示的 PoC</h3>
+              <p>第三周是最关键的一周。建议你做的不是复杂平台，而是一个“窄而完整”的 PoC：输入需求或接口文档，输出测试点初稿、异常场景补充项和问题分类建议，并配一层规则校验。只要闭环清晰，就已经非常适合求职。</p>
+              <div class="week-goal">
+                <div class="goal-box">
+                  <strong>本周胜利条件</strong>
+                  <p>PoC 可以跑通主链路，至少能演示一次完整输入到输出。</p>
+                </div>
+                <div class="goal-box">
+                  <strong>推荐技术路径</strong>
+                  <p>先用最熟的方式实现，不追求框架复杂度，重点是闭环。</p>
+                </div>
+                <div class="goal-box">
+                  <strong>面试加分点</strong>
+                  <p>从“我有想法”升级成“我自己验证过一个场景”。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="days-grid">
+            <article class="day-card" data-day="15">
+              <div class="day-head"><div class="day-index">15</div><input class="toggle" type="checkbox" aria-label="完成第15天"></div>
+              <h4>明确 PoC MVP</h4>
+              <p class="day-meta">主题：只保留最核心功能</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>定义输入：接口文档 / 需求 / 历史缺陷</li>
+                <li>定义输出：测试点、异常场景、缺陷分类建议</li>
+                <li>删除非必要功能</li>
+              </ul>
+              <div class="day-foot">产出：MVP 清单。面试联动：能说明“为什么这样切场景”。</div>
+            </article>
+            <article class="day-card" data-day="16">
+              <div class="day-head"><div class="day-index">16</div><input class="toggle" type="checkbox" aria-label="完成第16天"></div>
+              <h4>整理输入样本</h4>
+              <p class="day-meta">主题：让 PoC 有真实数据可用</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>准备 3-5 份接口或需求样本</li>
+                <li>准备若干历史缺陷或日志样本</li>
+                <li>建立输入模板</li>
+              </ul>
+              <div class="day-foot">产出：样本目录。面试联动：避免项目讲起来过于空洞。</div>
+            </article>
+            <article class="day-card" data-day="17">
+              <div class="day-head"><div class="day-index">17</div><input class="toggle" type="checkbox" aria-label="完成第17天"></div>
+              <h4>写 Prompt 与输出结构</h4>
+              <p class="day-meta">主题：结构化输出比“灵感输出”更重要</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>写测试点生成 Prompt</li>
+                <li>写缺陷分类 Prompt</li>
+                <li>规定输出 JSON 或固定结构</li>
+              </ul>
+              <div class="day-foot">产出：Prompt 模板。面试联动：说明你如何保证输出可用性。</div>
+            </article>
+            <article class="day-card" data-day="18">
+              <div class="day-head"><div class="day-index">18</div><input class="toggle" type="checkbox" aria-label="完成第18天"></div>
+              <h4>加上规则校验层</h4>
+              <p class="day-meta">主题：把测试思维放进 PoC</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>校验必填项和边界场景</li>
+                <li>校验输出格式与字段完整性</li>
+                <li>设计人工复核点</li>
+              </ul>
+              <div class="day-foot">产出：校验规则。面试联动：回答“风险怎么兜底”。</div>
+            </article>
+            <article class="day-card" data-day="19">
+              <div class="day-head"><div class="day-index">19</div><input class="toggle" type="checkbox" aria-label="完成第19天"></div>
+              <h4>跑通第一版闭环</h4>
+              <p class="day-meta">主题：输入到输出要真正能跑起来</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>用 1 个真实样本跑通</li>
+                <li>记录效果好和不好的地方</li>
+                <li>修一轮 Prompt 或规则</li>
+              </ul>
+              <div class="day-foot">产出：PoC v1。面试联动：你终于有可演示材料了。</div>
+            </article>
+            <article class="day-card" data-day="20">
+              <div class="day-head"><div class="day-index">20</div><input class="toggle" type="checkbox" aria-label="完成第20天"></div>
+              <h4>周末冲刺：做 3 组演示案例</h4>
+              <p class="day-meta">主题：保证你能对外展示</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>准备 3 个输入示例</li>
+                <li>保留输出结果截图或文档</li>
+                <li>总结 PoC 的价值和边界</li>
+              </ul>
+              <div class="day-foot">产出：演示材料。面试联动：避免面试时“只有想法没有证据”。</div>
+            </article>
+            <article class="day-card" data-day="21">
+              <div class="day-head"><div class="day-index">21</div><input class="toggle" type="checkbox" aria-label="完成第21天"></div>
+              <h4>周复盘：整理项目故事</h4>
+              <p class="day-meta">主题：把 PoC 讲成项目经历</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>写背景、做法、价值、局限</li>
+                <li>提炼 3 条面试可讲亮点</li>
+                <li>准备第 4 周优化</li>
+              </ul>
+              <div class="day-foot">产出：项目讲稿。面试联动：能回答“你做过哪些 AI 测试实践”。</div>
+            </article>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-top">
+            <div class="week-badge">
+              <strong>第 4 周</strong>
+              <span>Day 22-28</span>
+            </div>
+            <div>
+              <h3>把 PoC 变成面试资产，把学习变成求职结果</h3>
+              <p>最后一周要做的不是再扩功能，而是把已经有的东西抛光：让 PoC 可演示、让项目描述可复述、让面试回答更稳定、让简历更像“已经开始转型”的候选人。你未来是否拿到机会，很大程度就在这一周收束。</p>
+              <div class="week-goal">
+                <div class="goal-box">
+                  <strong>本周胜利条件</strong>
+                  <p>PoC 能讲，项目能写，面试能答，简历能投。</p>
+                </div>
+                <div class="goal-box">
+                  <strong>重点动作</strong>
+                  <p>录演示、写项目说明、做模拟问答、补简历表达。</p>
+                </div>
+                <div class="goal-box">
+                  <strong>面试加分点</strong>
+                  <p>把“学习者”姿态切换成“能落地的人”。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="days-grid">
+            <article class="day-card" data-day="22">
+              <div class="day-head"><div class="day-index">22</div><input class="toggle" type="checkbox" aria-label="完成第22天"></div>
+              <h4>优化 PoC 说明页</h4>
+              <p class="day-meta">主题：背景、流程、价值一页说清</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>写 PoC 项目简介</li>
+                <li>整理主流程截图</li>
+                <li>补应用边界和风险控制</li>
+              </ul>
+              <div class="day-foot">产出：项目说明文档。面试联动：让你的讲述更像真实项目复盘。</div>
+            </article>
+            <article class="day-card" data-day="23">
+              <div class="day-head"><div class="day-index">23</div><input class="toggle" type="checkbox" aria-label="完成第23天"></div>
+              <h4>把项目写进简历</h4>
+              <p class="day-meta">主题：从 PoC 到项目经历</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>提炼项目标题和职责</li>
+                <li>写清输入、输出、质量控制</li>
+                <li>形成 3-5 条结果化表达</li>
+              </ul>
+              <div class="day-foot">产出：简历可用项目段落。面试联动：口头和书面统一。</div>
+            </article>
+            <article class="day-card" data-day="24">
+              <div class="day-head"><div class="day-index">24</div><input class="toggle" type="checkbox" aria-label="完成第24天"></div>
+              <h4>强化自我介绍</h4>
+              <p class="day-meta">主题：把 AI 转型线自然嵌进去</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>练 1 分钟版自我介绍</li>
+                <li>练 3 分钟版自我介绍</li>
+                <li>加入 PoC 项目表达</li>
+              </ul>
+              <div class="day-foot">产出：自我介绍定稿。面试联动：开场就把方向立住。</div>
+            </article>
+            <article class="day-card" data-day="25">
+              <div class="day-head"><div class="day-index">25</div><input class="toggle" type="checkbox" aria-label="完成第25天"></div>
+              <h4>专项练习高频问题</h4>
+              <p class="day-meta">主题：为什么做 AI 测试、怎么控风险、怎么评估效果</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>练 5 道核心题</li>
+                <li>每题控制在 90 秒内</li>
+                <li>修掉空话、套话</li>
+              </ul>
+              <div class="day-foot">产出：5 段顺畅回答。面试联动：进入能打状态。</div>
+            </article>
+            <article class="day-card" data-day="26">
+              <div class="day-head"><div class="day-index">26</div><input class="toggle" type="checkbox" aria-label="完成第26天"></div>
+              <h4>模拟项目追问</h4>
+              <p class="day-meta">主题：为什么选这个场景、为什么这样设计、局限是什么</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>针对 PoC 列 10 个追问题</li>
+                <li>逐条准备回答</li>
+                <li>特别准备“没有正式上线怎么办”</li>
+              </ul>
+              <div class="day-foot">产出：追问清单。面试联动：把最容易露怯的点补上。</div>
+            </article>
+            <article class="day-card" data-day="27">
+              <div class="day-head"><div class="day-index">27</div><input class="toggle" type="checkbox" aria-label="完成第27天"></div>
+              <h4>周末冲刺：完整模拟面试</h4>
+              <p class="day-meta">主题：从自我介绍到项目深挖走一遍</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>模拟 30-45 分钟完整面试</li>
+                <li>记录卡壳点和废话点</li>
+                <li>当日修正</li>
+              </ul>
+              <div class="day-foot">产出：模拟面试复盘。面试联动：真正形成作战状态。</div>
+            </article>
+            <article class="day-card" data-day="28">
+              <div class="day-head"><div class="day-index">28</div><input class="toggle" type="checkbox" aria-label="完成第28天"></div>
+              <h4>整理投递材料</h4>
+              <p class="day-meta">主题：准备好真正出去打</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>简历最终检查</li>
+                <li>PoC 演示材料归档</li>
+                <li>面试笔记收束成一页</li>
+              </ul>
+              <div class="day-foot">产出：可投递版本。面试联动：让成果真正进入求职环节。</div>
+            </article>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-top">
+            <div class="week-badge">
+              <strong>收尾 2 天</strong>
+              <span>Day 29-30</span>
+            </div>
+            <div>
+              <h3>最后两天，只做“变得更稳”这件事</h3>
+              <p>最后两天不要再加新内容。你的重点是让已经学到的东西转成更稳定、更可信的输出：更稳的项目讲法、更稳的面试回答、更稳的求职信心。</p>
+              <div class="week-goal">
+                <div class="goal-box">
+                  <strong>本段胜利条件</strong>
+                  <p>你能在不看稿的情况下讲清 PoC、路线和下一步计划。</p>
+                </div>
+                <div class="goal-box">
+                  <strong>最重要动作</strong>
+                  <p>复盘、修正、再输出一次。</p>
+                </div>
+                <div class="goal-box">
+                  <strong>面试加分点</strong>
+                  <p>呈现出“有节奏、有思路、能落地”的状态。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="days-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+            <article class="day-card" data-day="29">
+              <div class="day-head"><div class="day-index">29</div><input class="toggle" type="checkbox" aria-label="完成第29天"></div>
+              <h4>全面复盘日</h4>
+              <p class="day-meta">主题：这 30 天我到底长进了什么</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>回顾学习笔记、项目、面试稿</li>
+                <li>写“我现在能回答的 10 个问题”</li>
+                <li>写“我还要继续补的 3 块能力”</li>
+              </ul>
+              <div class="day-foot">产出：总复盘。面试联动：你会更像一个清楚自己位置的人。</div>
+            </article>
+            <article class="day-card" data-day="30">
+              <div class="day-head"><div class="day-index">30</div><input class="toggle" type="checkbox" aria-label="完成第30天"></div>
+              <h4>最终展示日</h4>
+              <p class="day-meta">主题：对自己做一次完整结项</p>
+              <div class="label">今天要做</div>
+              <ul class="task-list">
+                <li>完整讲一遍 PoC</li>
+                <li>完整讲一遍求职方向转型逻辑</li>
+                <li>准备下一个 30 天计划</li>
+              </ul>
+              <div class="day-foot">产出：结项演示。面试联动：形成真正能上场的自信。</div>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>学习项目清单</h2>
+          <p>这里尽量挑了 GitHub 上对中文用户友好的项目或中文项目，并附上直接链接。你不需要全学完，重点是按路线图阶段去看：第 1 周看结构，第 2 周补评测视角，第 3 周开始借鉴做自己的 PoC。</p>
+        </div>
+      </div>
+      <div class="resource-grid">
+        <article class="resource-card">
+          <h3>AI 应用结构</h3>
+          <p>优先看中文项目，先建立“一个 AI 应用平台由哪些模块组成”的直觉。</p>
+          <ul>
+            <li><a href="https://github.com/labring/FastGPT" target="_blank" rel="noreferrer">FastGPT</a>：中文社区很活跃，适合理解知识库、工作流、应用编排、模型接入。</li>
+            <li><a href="https://github.com/langgenius/dify" target="_blank" rel="noreferrer">Dify</a>：不是中文项目，但中文资料非常多，适合理解 AI 平台工程化落地。</li>
+            <li><a href="https://github.com/coze-dev/coze-studio" target="_blank" rel="noreferrer">Coze Studio</a>：适合补 Agent、工具调用、工作流这条线。</li>
+          </ul>
+        </article>
+        <article class="resource-card">
+          <h3>RAG 与知识库</h3>
+          <p>这一组很适合你补“知识检索 + 问答 + 文档处理 + 工程化接入”认知。</p>
+          <ul>
+            <li><a href="https://github.com/chatchat-space/Langchain-Chatchat" target="_blank" rel="noreferrer">Langchain-Chatchat</a>：中文实战项目，很适合入门 RAG。</li>
+            <li><a href="https://github.com/1Panel-dev/MaxKB" target="_blank" rel="noreferrer">MaxKB</a>：中文团队项目，偏产品化，适合看完整知识库问答系统。</li>
+            <li><a href="https://github.com/infiniflow/ragflow" target="_blank" rel="noreferrer">RAGFlow</a>：适合建立更成熟的 RAG 平台视角。</li>
+          </ul>
+        </article>
+        <article class="resource-card">
+          <h3>评测与观测</h3>
+          <p>这组不一定全是中文项目，但中文资料较多，而且对你走 AI 测试方向非常关键。</p>
+          <ul>
+            <li><a href="https://github.com/langfuse/langfuse" target="_blank" rel="noreferrer">Langfuse</a>：重点看可观测性、trace、成本、输入输出记录。</li>
+            <li><a href="https://github.com/confident-ai/deepeval" target="_blank" rel="noreferrer">DeepEval</a>：重点看 LLM 应用评测思路，理解什么叫评测集与质量标准。</li>
+            <li><a href="https://github.com/explodinggradients/ragas" target="_blank" rel="noreferrer">Ragas</a>：重点看 RAG 评估思路，帮助你建立“怎么测 RAG”的意识。</li>
+          </ul>
+        </article>
+        <article class="resource-card">
+          <h3>中文学习型资源</h3>
+          <p>如果你更适合边看边学，而不是直接啃大型项目，这组可以作为补充资料。</p>
+          <ul>
+            <li><a href="https://github.com/datawhalechina" target="_blank" rel="noreferrer">DatawhaleChina</a>：中文开源学习社区，常有大模型应用、RAG、Agent 相关实战教程。</li>
+            <li><a href="https://github.com/THUDM/ChatGLM3" target="_blank" rel="noreferrer">ChatGLM3</a>：中文大模型生态里很有代表性，适合建立本土模型视角。</li>
+            <li><a href="https://github.com/open-webui/open-webui" target="_blank" rel="noreferrer">Open WebUI</a>：虽然不是中文项目，但上手快，适合补本地大模型应用体验。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>按周怎么学这些项目</h2>
+          <p>这一块是给你降低学习阻力的。不是把仓库全看一遍，而是按你的 30 天节奏，只看当前周最需要的部分，避免一上来就陷进源码细节。</p>
+        </div>
+      </div>
+      <div class="resource-grid">
+        <article class="resource-card">
+          <h3>第 1 周：先看“整体长什么样”</h3>
+          <p>目标是建立 AI 应用全貌，不追实现细节，优先看这些位置。</p>
+          <ul>
+            <li><strong>FastGPT</strong>：先看 README、产品截图、功能说明，重点理解知识库、工作流、应用编排。</li>
+            <li><strong>Dify</strong>：先看项目首页、文档导航、功能模块介绍，重点理解模型接入、Workflow、知识库和日志。</li>
+            <li><strong>Langchain-Chatchat</strong>：先看 README、部署说明、功能演示，重点理解 RAG 的最小链路。</li>
+          </ul>
+        </article>
+        <article class="resource-card">
+          <h3>第 2 周：重点补“怎么测 AI”</h3>
+          <p>这周不要死磕工程实现，重点看这些项目分别在解决什么质量问题。</p>
+          <ul>
+            <li><strong>Langfuse</strong>：重点看 trace、会话记录、输入输出、成本统计，理解为什么 AI 应用需要可观测性。</li>
+            <li><strong>DeepEval</strong>：重点看评测概念、评测方式、指标设计，建立“质量标准”意识。</li>
+            <li><strong>Ragas</strong>：重点看 RAG 评估方法，理解召回、相关性、答案质量这些概念。</li>
+          </ul>
+        </article>
+        <article class="resource-card">
+          <h3>第 3 周：做 PoC 时借鉴什么</h3>
+          <p>这一周只借思路，不照搬复杂平台。把注意力放在输入、输出、约束和演示闭环上。</p>
+          <ul>
+            <li><strong>Langchain-Chatchat / MaxKB</strong>：借鉴“输入文档后如何组织问答和知识处理”。</li>
+            <li><strong>FastGPT / Dify</strong>：借鉴工作流、节点式思路和结构化输出方式。</li>
+            <li><strong>Open WebUI</strong>：借鉴最小可交互形态，理解怎么把结果展示出来。</li>
+          </ul>
+        </article>
+        <article class="resource-card">
+          <h3>第 4 周：为面试准备的看法</h3>
+          <p>最后一周再回头看项目，不是为了继续学功能，而是为了强化表达。</p>
+          <ul>
+            <li>回看 <strong>Dify / FastGPT</strong>：总结“一个 AI 平台通常有哪些模块”。</li>
+            <li>回看 <strong>Langfuse / DeepEval / Ragas</strong>：总结“AI 应用怎么评估、怎么追踪、怎么回归”。</li>
+            <li>回看 <strong>你的 PoC</strong>：把项目讲法对齐到这些成熟项目的思路上。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>打开仓库后先看哪里</h2>
+          <p>这是最容易卡住的地方。我帮你压缩成“先看这几个位置”，这样你不会一打开仓库就迷路。</p>
+        </div>
+      </div>
+      <div class="final-grid">
+        <article class="final-card">
+          <h3>README / Docs</h3>
+          <p>先看项目定位、功能边界、典型使用场景。不要一开始就看源码。</p>
+        </article>
+        <article class="final-card">
+          <h3>产品截图 / 演示视频</h3>
+          <p>先建立“这个项目跑起来长什么样”的直觉，再去理解功能结构。</p>
+        </article>
+        <article class="final-card">
+          <h3>功能模块列表</h3>
+          <p>重点找知识库、工作流、模型接入、评测、日志、Trace 这些模块。</p>
+        </article>
+        <article class="final-card">
+          <h3>示例配置 / 示例应用</h3>
+          <p>如果仓库有 examples、templates、demo，优先看这些，学习效率最高。</p>
+        </article>
+        <article class="final-card">
+          <h3>Issues / Discussions</h3>
+          <p>看真实用户常见问题，能快速建立对实际落地难点的感觉。</p>
+        </article>
+        <article class="final-card">
+          <h3>源码只看“入口层”</h3>
+          <p>如果要看代码，只看入口和模块划分，不要求短期内啃透核心实现。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>月底必须拿到的 6 个成果</h2>
+          <p>这 6 样东西凑齐，你的 30 天就不是“看过一些资料”，而是真正完成了一轮求职导向的能力升级。</p>
+        </div>
+      </div>
+      <div class="final-grid">
+        <article class="final-card">
+          <h3>1. PoC 演示链路</h3>
+          <p>至少准备 3 组输入输出示例，最好有截图或录屏。</p>
+        </article>
+        <article class="final-card">
+          <h3>2. 项目说明稿</h3>
+          <p>能按“背景、做法、风险控制、价值、局限”讲完整。</p>
+        </article>
+        <article class="final-card">
+          <h3>3. 简历项目段落</h3>
+          <p>把 PoC 写进简历，不要只停留在口头描述。</p>
+        </article>
+        <article class="final-card">
+          <h3>4. 高质量自我介绍</h3>
+          <p>1 分钟版和 3 分钟版都要讲顺。</p>
+        </article>
+        <article class="final-card">
+          <h3>5. 高频面试回答</h3>
+          <p>至少练熟“为什么做 AI 测试”“怎么控风险”“怎么评估效果”。</p>
+        </article>
+        <article class="final-card">
+          <h3>6. 下一阶段路线</h3>
+          <p>明确下一个 30 天，是补 Python、补评测，还是把 PoC 升级成作品。</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      使用建议：不要试图一天补太多概念。每天完成“学习输入 + 一个产出 + 一次口头表达”，效果远比单纯看资料好。你真正的目标不是变成 AI 工程师，而是变成一个懂 AI 应用、懂 AI 测试、并且能把这些东西落回测试提效场景的人。
+    </div>
+  </main>
+
+  <script>
+    const KEY = 'ai-test-30day-progress';
+    const cards = Array.from(document.querySelectorAll('.day-card'));
+    const meterFill = document.getElementById('meterFill');
+    const meterText = document.getElementById('meterText');
+    const weekendBtn = document.getElementById('markWeekends');
+    const resetBtn = document.getElementById('resetProgress');
+
+    const weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 29, 30];
+
+    function loadState() {
+      try {
+        return JSON.parse(localStorage.getItem(KEY) || '{}');
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function saveState(state) {
+      localStorage.setItem(KEY, JSON.stringify(state));
+    }
+
+    function sync() {
+      const state = loadState();
+      let done = 0;
+      cards.forEach((card) => {
+        const day = card.dataset.day;
+        const checked = Boolean(state[day]);
+        const toggle = card.querySelector('.toggle');
+        toggle.checked = checked;
+        card.classList.toggle('done', checked);
+        if (checked) done += 1;
+      });
+      meterFill.style.width = `${(done / cards.length) * 100}%`;
+      meterText.textContent = `${done} / ${cards.length}`;
+    }
+
+    cards.forEach((card) => {
+      const toggle = card.querySelector('.toggle');
+      toggle.addEventListener('change', () => {
+        const state = loadState();
+        state[card.dataset.day] = toggle.checked;
+        saveState(state);
+        sync();
+      });
+    });
+
+    weekendBtn.addEventListener('click', () => {
+      const state = loadState();
+      weekendDays.forEach((day) => {
+        state[String(day)] = true;
+      });
+      saveState(state);
+      sync();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      localStorage.removeItem(KEY);
+      sync();
+    });
+
+    sync();
+  </script>
+</body>
+</html>
